@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox alignment="TOP_LEFT" prefHeight="891.0" prefWidth="942.0" spacing="20.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.farmacia.farmaciaController">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+    <VBox prefWidth="380.0" spacing="10.0">
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Cadastro de Medicamento" />
+
+        <TextField fx:id="codigoField" promptText="Código do Medicamento" style="-fx-font-size: 14px; -fx-pref-width: 250px; -fx-padding: 6px; -fx-border-color: #888; -fx-border-radius: 5;" />
+        <TextField fx:id="nomeField" promptText="Nome do Medicamento" style="-fx-font-size: 14px; -fx-pref-width: 250px; -fx-padding: 6px; -fx-border-color: #888; -fx-border-radius: 5;" />
+        <TextField fx:id="descricaoField" promptText="Descrição" style="-fx-font-size: 14px; -fx-pref-width: 250px; -fx-padding: 6px; -fx-border-color: #888; -fx-border-radius: 5;" />
+        <TextField fx:id="principioAtivoField" promptText="Princípio Ativo" style="-fx-font-size: 14px; -fx-pref-width: 250px; -fx-padding: 6px; -fx-border-color: #888; -fx-border-radius: 5;" />
+        <TextField fx:id="dataValidadeField" promptText="Data de Validade (yyyy-MM-dd)" style="-fx-font-size: 14px; -fx-pref-width: 250px; -fx-padding: 6px; -fx-border-color: #888; -fx-border-radius: 5;" />
+        <TextField fx:id="quantidadeEstoqueField" promptText="Quantidade em Estoque" style="-fx-font-size: 14px; -fx-pref-width: 250px; -fx-padding: 6px; -fx-border-color: #888; -fx-border-radius: 5;" />
+        <TextField fx:id="precoField" promptText="Preço (R$)" style="-fx-font-size: 14px; -fx-pref-width: 250px; -fx-padding: 6px; -fx-border-color: #888; -fx-border-radius: 5;" />
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label style="-fx-font-size: 14px; -fx-text-fill: #555;" text="Medicamento Controlado:" />
+            <RadioButton fx:id="controladoRadioButton" text="Sim">
+                <toggleGroup>
+                    <ToggleGroup fx:id="controladoGroup" />
+                </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="naoControladoRadioButton" text="Não" toggleGroup="$controladoGroup" />
+        </HBox>
+        <TextField fx:id="cnpjFornecedorField" promptText="CNPJ do Fornecedor" style="-fx-font-size: 14px; -fx-pref-width: 250px; -fx-padding: 6px; -fx-border-color: #888; -fx-border-radius: 5;" />
+        <TextField fx:id="razaoSocialField" promptText="Razão Social do Fornecedor" style="-fx-font-size: 14px; -fx-pref-width: 250px; -fx-padding: 6px; -fx-border-color: #888; -fx-border-radius: 5;" />
+
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-margin-top: 20px;" text="Ações" />
+        <Button onAction="#adicionarMedicamento" style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5; -fx-pref-width: 200px;" text="Adicionar Medicamento" />
+        <Button onAction="#excluirMedicamento" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5; -fx-pref-width: 200px;" text="Excluir Medicamento" />
+        <Button onAction="#consultarMedicamento" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5; -fx-pref-width: 200px;" text="Consultar Medicamento" />
+
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-margin-top: 20px;" text="Relatórios e Busca" />
+        <Button onAction="#relatorioEstoqueBaixo" style="-fx-background-color: #ffc107; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5; -fx-pref-width: 300px;" text="Relatório Estoque Baixo" />
+        <Button onAction="#relatorioProximoVencimento" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5; -fx-pref-width: 300px;" text="Relatório Vencimento Próximo" />
+        <Button onAction="#relatorioValorTotalPorFornecedor" style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5; -fx-pref-width: 300px;" text="Relatório Valor Total Estoque por Fornecedor" />
+        <Button onAction="#buscarMedicamentoControlado" style="-fx-background-color: #6f42c1; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5; -fx-pref-width: 300px;" text="Buscar Medicamento Controlado" />
+
+    </VBox>
+
+    <VBox prefWidth="500.0" spacing="10.0">
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Estoque de Medicamentos" />
+        <TableView fx:id="tabelaMedicamentos" style="-fx-border-color: #888; -fx-border-radius: 5;">
+            <columns>
+                <TableColumn fx:id="colunaCodigo" prefWidth="60.0" text="Código">
+                    <cellValueFactory><PropertyValueFactory property="codigo" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colunaNome" prefWidth="100.0" text="Nome">
+                    <cellValueFactory><PropertyValueFactory property="nome" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colunaDescricao" prefWidth="120.0" text="Descrição">
+                    <cellValueFactory><PropertyValueFactory property="descricao" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colunaPrincipio" prefWidth="120.0" text="Princípio Ativo">
+                    <cellValueFactory><PropertyValueFactory property="principioAtivo" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colunaDataValidade" prefWidth="96.0" text="Validade">
+                    <cellValueFactory><PropertyValueFactory property="dataValidade" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colunaEstoque" minWidth="0.0" prefWidth="64.0" text="Estoque">
+                    <cellValueFactory><PropertyValueFactory property="quantidadeEstoque" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colunaPreco" prefWidth="60.0" text="Preço (R$)">
+                    <cellValueFactory><PropertyValueFactory property="preco" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colunaControlado" prefWidth="80.0" text="Controlado">
+                    <cellValueFactory><PropertyValueFactory property="controlado" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colunaFornecedor" prefWidth="120.0" text="Fornecedor">
+                    <cellValueFactory><PropertyValueFactory property="cadastro" /></cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+</HBox>
